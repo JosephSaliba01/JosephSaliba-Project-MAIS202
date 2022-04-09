@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<meta charset="utf-8">
-</head> 
-    <body>
-        <h1>Input your data:</h1>
-        <form method="POST">
-            <label>u:</label>
-            <input name="u">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+            crossorigin="anonymous">
+    </head>
+    <body style="padding: 50px;">
+        <div class="container" style="width: 800px; background-color: rgb(221, 235, 255); padding: 20px; margin-bottom: 50px;">
+            <h2>Project made by Joseph Saliba for MAIS202, McGill University.</h2>
+        </div>
+        <div class="container" style="width: 500px; background-color: rgb(221, 235, 255); padding: 20px;">
+            <h1>Input your stellar body data:</h1>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="u">u Value</label>
+                    <input class="form-control" type="text" name="u" id="u">
+                </div>
+    
+                <div class="form-group">
+                    <label for="g">g Value</label>
+                    <input class="form-control" type="text" name="g" id="g">
+                </div>
+    
+                <div class="form-group">
+                    <label for="r">r Value</label>
+                    <input class="form-control" type="text" name="r" id="r">
+                </div>
+    
+                <div class="form-group">
+                    <label for="i">i Value</label>
+                    <input class="form-control" type="text" name="i" id="i">
+                </div>
+    
+                <div class="form-group">
+                    <label for="z">z Value</label>
+                    <input class="form-control" type="text" name="z" id="z">
+                </div>
 
-            <label>g:</label>
-            <input name="g">
-
-            <label>r:</label>
-            <input name="r">
-
-            <label>i:</label>
-            <input name="i">
-
-            <label>z:</label>
-            <input name="z">
-
-            <input type="submit" value="Submit">
-        </form>
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </form>
+        </div>
     </body>
 </html>

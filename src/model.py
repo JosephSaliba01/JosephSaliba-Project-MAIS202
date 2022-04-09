@@ -58,7 +58,7 @@ def generate_model():
 
     # save model
     dump(rf, 'model.joblib')
-
+    print("Training Complete.")
     return rf
 
 
@@ -66,12 +66,7 @@ if __name__ == '__main__':
     # print mean and standard deviation of each filter value
     print(json.dumps(filter_values_info, sort_keys=True, indent=4))
 
-    # if model is not saved, train it
-    if not os.path.exists('model.joblib'):
-        rf = generate_model()
-    else:
-        # load model
-        rf = load('model.joblib')
+    rf = generate_model()
 
     # print model accuracy
     print('Accuracy:', rf.score(X_test, y_test))
