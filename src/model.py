@@ -1,10 +1,11 @@
 # import statmeents
 import numpy as np
 import pandas as pd
-import matplotlib as plt
+import json
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-import json
+from joblib import dump, load
 
 # read .csv file
 df = pd.read_csv('star_classification.csv')
@@ -37,11 +38,6 @@ for value in {'u', 'g', 'r', 'i', 'z'}:
             filter_values[value][stellar_class]
         )
 
-print(json.dumps(filter_values_info, sort_keys=True, indent=4))
-
-# use random forest to train model
-rf = RandomForestClassifier(n_estimators=100)
-
 # convert df[['u', 'g', 'r', 'i', 'z']] to a list of values
 X = df[['u', 'g', 'r', 'i', 'z']].values.tolist()
 
@@ -53,8 +49,30 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=0
 )
 
-# train model
-rf.fit(X_train, y_train)
+def generate_model():
+    # use random forest to train model
+    rf = RandomForestClassifier(n_estimators=100)
 
-# print accuracy
-print('Accuracy:', rf.score(X_test, y_test))
+    # train model
+    rf.fit(X_train, y_train)
+
+    # save model
+    dump(rf, 'model.joblib')
+
+    return rf
+
+
+if __name__ == '__main__':
+    # print mean and standard deviation of each filter value
+    print(json.dumps(filter_values_info, sort_keys=True, indent=4))
+
+    # if model is not saved, train it
+    if not os.path.exists('model.joblib'):
+        rf = generate_model()
+    else:
+        # load model
+        rf = load('model.joblib')
+
+    # print model accuracy
+    print('Accuracy:', rf.score(X_test, y_test))
+
